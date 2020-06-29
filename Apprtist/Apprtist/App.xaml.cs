@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Apprtist.PageModels;
+using FreshMvvm;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Apprtist
 {
     public partial class App : Application
@@ -10,7 +12,17 @@ namespace Apprtist
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+
+            Page page = FreshPageModelResolver.ResolvePageModel<IntroPageModel>();
+
+            FreshNavigationContainer container = new FreshNavigationContainer(page)
+            {
+                BarTextColor = Color.White,
+                BarBackgroundColor = Color.FromHex("#125aae")
+            };
+
+            MainPage = container;
         }
 
         protected override void OnStart()
