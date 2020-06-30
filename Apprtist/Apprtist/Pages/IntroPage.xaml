@@ -4,12 +4,33 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Apprtist.Pages.IntroPage">
+             x:Class="Apprtist.Pages.IntroPage"
+             NavigationPage.HasNavigationBar="true" >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <CarouselView x:Name="CVPresentation" ItemsSource="{Binding PresentationData}" Grid.Row="0" PeekAreaInsets="10" IndicatorView="indicatorView">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20" Margin="20" BackgroundColor="Blue">
+                            <StackLayout>
+                                <Image Source="{Binding ImageUrl}" WidthRequest="500" HeightRequest="400" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+                
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="Black" Grid.Row="1"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
