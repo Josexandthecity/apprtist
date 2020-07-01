@@ -5,32 +5,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Apprtist.Pages.IntroPage"
-             NavigationPage.HasNavigationBar="true" >
+             NavigationPage.HasNavigationBar="True" >
+    
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="Beige" >
             <Grid.RowDefinitions >
-                <RowDefinition Height="6*"/>
+                <RowDefinition Height="8*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <CarouselView x:Name="CVPresentation" ItemsSource="{Binding PresentationData}" Grid.Row="0" PeekAreaInsets="10" IndicatorView="indicatorView">
+            <CarouselView  x:Name="CVPresentation" Margin="10" ItemsSource="{Binding PresentationData}" Position="{Binding Position, Mode=TwoWay}" PeekAreaInsets="5" IndicatorView="indicatorView" IsSwipeEnabled="True">
                 <CarouselView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="2"/>
                 </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="20" Margin="20" BackgroundColor="Blue">
-                            <StackLayout>
-                                <Image Source="{Binding ImageUrl}" WidthRequest="500" HeightRequest="400" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center" VerticalOptions="Center" />
-                            </StackLayout>
-                        </Frame>
+                        <Image Source="{Binding ImageUrl}" BackgroundColor="LightBlue" HeightRequest="900" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
-                
             </CarouselView>
-            <IndicatorView x:Name="indicatorView"
-                           IndicatorColor="LightGray"
-                           SelectedIndicatorColor="Black" Grid.Row="1"/>
+            <Label Text="{Binding IntroText}" Margin="50,100" BackgroundColor="Transparent" TextColor="Brown" FontAttributes="Italic" FontSize="Title" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
+            <IndicatorView x:Name="indicatorView" IndicatorColor="Gray" SelectedIndicatorColor="Black" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="20"/>
+            <StackLayout Grid.Row="1" Orientation="Horizontal" IsVisible="{Binding IntroButtonIsVisible}">
+                <Button Text="Are you an Artist?" CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start"  WidthRequest="200" HeightRequest="50"/>
+                <Button Text="Are you an event User?" CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="50"/>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

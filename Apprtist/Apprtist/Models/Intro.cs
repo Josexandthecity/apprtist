@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Apprtist.Models
 {
-    public class IntroModel
+    public class Intro
     {
         public string ImageUrl { get; set; }
         
