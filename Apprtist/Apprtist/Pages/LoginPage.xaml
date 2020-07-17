@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Apprtist.Pages.LoginPage">
+    <ContentPage.Content>
+        <StackLayout >
+            <WebView Source="{Binding FacebookAuthUrl}" WidthRequest="600" HeightRequest="600" Navigated="WebView_Navigated" IsVisible="{Binding FaceView}"/>
+            <Image  Source="{Binding ImagePic}" WidthRequest="100" HeightRequest="100" />
+            <Label Text="{Binding UserData.Name}" Margin="10,10" HorizontalOptions="Center" FontSize="Subtitle" TextColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

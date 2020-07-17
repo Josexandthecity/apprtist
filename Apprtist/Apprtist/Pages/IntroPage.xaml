@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="True" >
     
     <ContentPage.Content>
-        <Grid BackgroundColor="Beige" >
+        <Grid BackgroundColor="Beige">
             <Grid.RowDefinitions >
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="*"/>
@@ -26,8 +26,8 @@
             <Label Text="{Binding IntroText}" Margin="50,100" BackgroundColor="Transparent" TextColor="Brown" FontAttributes="Italic" FontSize="Title" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
             <IndicatorView x:Name="indicatorView" IndicatorColor="Gray" SelectedIndicatorColor="Black" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="20"/>
             <StackLayout Grid.Row="1" Orientation="Horizontal" IsVisible="{Binding IntroButtonIsVisible}">
-                <Button Text="Are you an Artist?" CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start"  WidthRequest="200" HeightRequest="50"/>
-                <Button Text="Are you an event User?" CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="50"/>
+                <Button Text="Are you an Artist?" Command="{Binding ArtistButtonCommand}"  CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start"  WidthRequest="200" HeightRequest="50"/>
+                <Button Text="Are you an event User?" Command="{Binding UserButtonCommand}" CornerRadius="10" Margin="10, 10" BackgroundColor="BlueViolet" TextColor="Black" FontSize="Subtitle" VerticalOptions="Start" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="50"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
