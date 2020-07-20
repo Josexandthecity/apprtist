@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -50,6 +51,19 @@ namespace Apprtist.PageModels
                 ReceiveToken();
             }
         }
+
+        bool faceView;
+        public bool FaceView
+        {
+            get { return faceView; }
+            set { faceView = value; RaisePropertyChanged(); }
+        }
+        bool faceButton;
+        public bool FaceButton
+        {
+            get { return faceButton; }
+            set { faceButton = value; RaisePropertyChanged(); }
+        }
         string imagePic;
         public string ImagePic
         {
@@ -69,9 +83,18 @@ namespace Apprtist.PageModels
             set { accesToken = value; RaisePropertyChanged(); }
         }
 
+        public Command SignInWithFacebookCommand => new Command(async () => await SignInFacebookCommand());
+
+        private async Task SignInFacebookCommand()
+        {
+            FaceView = true;
+            FaceButton = false;
+            FacebookAuthUrl = Constants.Constants.FaceAuthUrl;
+        }
+
         public LoginPageModel()
         {
-            FacebookAuthUrl = Constants.Constants.FaceAuthUrl;
+            FaceButton = true;
         }
         private void ReceiveToken()
         {
@@ -79,12 +102,13 @@ namespace Apprtist.PageModels
             {
                 TokenUrl = TokenUrl.Replace("https://www.facebook.com/connect/login_success.html#access_token=", "");
                 AccesToken = TokenUrl.Split('&')[0];
-                CallFacebookData();
-                
+                CallFaceUserData();
+
+                FaceView = false;
             }
         }
 
-        private void CallFacebookData()
+        private void CallFaceUserData()
         {
             IsBusy = true;
             var client = new RestClient("https://graph.facebook.com/me?fields=email,name,picture&access_token=" + AccesToken);
@@ -95,7 +119,6 @@ namespace Apprtist.PageModels
             UserName = UserData.Name;
             Application.Current.Properties["Report"] = response.Content;
             IsBusy = false;
-            
         }
     }
 }

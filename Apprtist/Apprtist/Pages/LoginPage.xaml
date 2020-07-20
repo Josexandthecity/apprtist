@@ -4,12 +4,51 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Apprtist.Pages.LoginPage">
+             x:Class="Apprtist.Pages.LoginPage"
+             >
     <ContentPage.Content>
-        <StackLayout >
-            <WebView Source="{Binding FacebookAuthUrl}" WidthRequest="600" HeightRequest="600" Navigated="WebView_Navigated" IsVisible="{Binding FaceView}"/>
-            <Image  Source="{Binding ImagePic}" WidthRequest="100" HeightRequest="100" />
-            <Label Text="{Binding UserData.Name}" Margin="10,10" HorizontalOptions="Center" FontSize="Subtitle" TextColor="Black"/>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="80"/>
+                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="50"/>
+            </Grid.RowDefinitions>
+                <WebView Source="{Binding FacebookAuthUrl}" WidthRequest="600" HeightRequest="600" Navigated="WebView_Navigated" IsVisible="{Binding FaceView}"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                    <Label Text="Select Language"/>
+                    <Image VerticalOptions="Start"/>
+                </StackLayout>
+            <Grid Grid.Row="1" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="1" Text="{Binding UserEmail}" Placeholder="Email" FontSize="Medium" WidthRequest="50"/>
+                <Entry Grid.Row="2" Text="{Binding UserPassword}" Placeholder="Password" FontSize="Medium" IsPassword="True" WidthRequest="50"/>
+                <Button Grid.Row="3" Text="Submit" FontFamily="SeigeUI" FontSize="Medium"  TextColor="White" BackgroundColor="#3897F0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" Command="{Binding SignInWithFacebookCommand}" CornerRadius="0"/>
+                <Label Grid.Row="4" Text="Login trouble ? Get Help Signing in" FontSize="Medium" HorizontalOptions="Center" Margin="0,10,0,0" />
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                    <Label Grid.Column="1" Text="OR" VerticalOptions="Center" Margin="10,0,10,0" />
+                    <Label Grid.Column="2" BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                </Grid>
+                <Button Grid.Row="6" ImageSource="Images/ic_fb" FontFamily="Roboto" FontSize="Medium" Text="Sign in with Facebook" TextColor="White" BackgroundColor="#3b5998" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="50" Command="{Binding SignInWithFacebookCommand}" CornerRadius="0"/>
+            </Grid>
+            <StackLayout Grid.Row="2" BackgroundColor="#FFFFFF">
+                <Label HeightRequest="1" BackgroundColor="#E3E3E3"/>
+                <Label Text="Dont have an Account yet? Sign Up" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
